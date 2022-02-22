@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
-public class Intake extends Subsystem {
+public class Conveyor extends Subsystem {
     private PWMSparkMax motor;
 
-    public Intake() {
-        motor = new PWMSparkMax(4);
+    public Conveyor() {
+        motor = new PWMSparkMax(7);
     }
 
     public void disableMotor() {

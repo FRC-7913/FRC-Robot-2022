@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
-public class Intake extends Subsystem {
-    private PWMSparkMax motor;
+public class Shooter extends Subsystem {
+    private PWMSparkMax bottomMotor;
+    private PWMSparkMax topMotor;
 
-    public Intake() {
-        motor = new PWMSparkMax(4);
+    public Shooter() {
+        bottomMotor = new PWMSparkMax(5);
+        topMotor = new PWMSparkMax(6);
     }
 
     public void disableMotor() {
@@ -21,7 +23,8 @@ public class Intake extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-        motor.set(speed);
+        topMotor.set(speed);
+        bottomMotor.set(speed);
     }
 
     public Command start(){
