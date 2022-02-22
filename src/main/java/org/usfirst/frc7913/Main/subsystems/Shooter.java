@@ -28,7 +28,7 @@ public class Shooter extends Subsystem {
     }
 
     public Command start(){
-        setSpeed(0.25);
+        setSpeed(0.75);
         return null;
     }
 
