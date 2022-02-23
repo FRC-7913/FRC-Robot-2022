@@ -53,7 +53,7 @@ public class DriveTrain extends Subsystem {
         // DriveTrain config
         DriveTrain.setSafetyEnabled(true);
         DriveTrain.setExpiration(0.1);
-        DriveTrain.setMaxOutput(1.0);
+        DriveTrain.setMaxOutput(0.6);
     }
 
     @Override
@@ -66,6 +66,7 @@ public class DriveTrain extends Subsystem {
         // Gets X & Y axes from the joystick controller
         // Arcade Drive combines the two motor controller groups, first arg is forward/reverse, second is rotation.
         // Unlike tank Drive which has the two motor controller groups separate where the first arg is forward/reverse for the left side and the second is the same for the right
-        DriveTrain.arcadeDrive(Robot.io.joystickx30.getY(), Robot.io.joystickx30.getX(), true);
+        //DriveTrain.arcadeDrive(Robot.io.joystickx30.getY(), Robot.io.joystickx30.getX(), true);
+        DriveTrain.tankDrive(Robot.io.xboxController.getLeftY(), Robot.io.xboxController.getRightY());
     }
 }

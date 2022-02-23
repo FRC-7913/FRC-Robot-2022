@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc7913.Main.commands.*;
 import org.usfirst.frc7913.Main.subsystems.*;
-
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -21,6 +21,8 @@ public class Robot extends TimedRobot {
 
     public static IO io;
     public static DriveTrain DriveTrain;
+    public static Intake Intake = new Intake();
+    private JoystickButton startShoot;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -28,14 +30,15 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-
         DriveTrain = new DriveTrain();
         io = new IO();
-
+        startShoot = new JoystickButton(io.getXboxController(), 4);
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
-        SmartDashboard.putData("Auto mode", chooser);   
-    }
+        SmartDashboard.putData("Auto mode", chooser);
+
+        startShoot.whileHeld(new StartIntake());
+        }
 
     @Override
     public void robotPeriodic() {
