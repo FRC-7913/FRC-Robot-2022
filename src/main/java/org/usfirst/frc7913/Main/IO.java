@@ -1,7 +1,8 @@
 package org.usfirst.frc7913.Main;
 import org.usfirst.frc7913.Main.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.*;
 //import org.usfirst.frc7913.Main.subsystems.*;
 
@@ -18,24 +19,19 @@ public class IO {
     public JoystickButton button5;
     public JoystickButton button6;
     public JoystickButton button7;
-    public Joystick joystickx30;
-    public Joystick xboxController;
+    // public Joystick joystickx30;
+    public XboxController xboxController;
     boolean status = true;
 
     public IO() {
-        xboxController = new Joystick(1);
-        joystickx30 = new Joystick(0); 
-
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("Drive", new Drive());
-
+        xboxController = new XboxController(0);
+        // joystickx30 = new Joystick(0); 
     }
 
-    public Joystick getjoystickx30() {
-        return joystickx30;
-    }
-    public Joystick getXboxController() {
+    // public Joystick getjoystickx30() {
+    //     return joystickx30;
+    // }
+    public XboxController getXboxController() {
         return xboxController;
     }
 }

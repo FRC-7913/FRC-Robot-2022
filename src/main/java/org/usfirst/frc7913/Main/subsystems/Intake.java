@@ -25,7 +25,7 @@ public class Intake extends Subsystem {
     }
 
     public Command start(){
-        setSpeed(1);
+        setSpeed(0.4);
         return null;
     }
 

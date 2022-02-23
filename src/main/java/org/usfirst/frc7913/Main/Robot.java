@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         DriveTrain = new DriveTrain();
         io = new IO();
-        startShoot = new JoystickButton(io.getjoystickx30(), 1);
+        startShoot = new JoystickButton(io.getXboxController(), 4);
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
         SmartDashboard.putData("Auto mode", chooser);
