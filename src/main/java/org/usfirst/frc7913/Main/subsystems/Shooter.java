@@ -23,12 +23,12 @@ public class Shooter extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-        topMotor.set(speed);
+        topMotor.set(speed * -1);
         bottomMotor.set(speed);
     }
 
     public Command start(){
-        setSpeed(0.75);
+        setSpeed(1);
         return null;
     }
 
