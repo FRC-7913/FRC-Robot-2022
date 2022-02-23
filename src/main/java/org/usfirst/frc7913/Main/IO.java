@@ -1,10 +1,6 @@
 package org.usfirst.frc7913.Main;
-import org.usfirst.frc7913.Main.commands.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.*;
-//import org.usfirst.frc7913.Main.subsystems.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
