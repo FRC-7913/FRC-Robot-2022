@@ -17,11 +17,6 @@ public class Shooter extends Subsystem {
         setSpeed(0);
     }
 
-    @Override
-    public void periodic() {
-        setSpeed(0);
-    }
-
     public void setSpeed(double speed) {
         topMotor.set(speed * -1);
         bottomMotor.set(speed);
