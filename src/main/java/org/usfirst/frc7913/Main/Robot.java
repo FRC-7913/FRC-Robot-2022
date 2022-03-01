@@ -28,8 +28,6 @@ public class Robot extends TimedRobot {
     public static Shooter Shooter = new Shooter();
     private JoystickButton startShoot;
     private JoystickButton stopShoot;
-    private JoystickButton conveyorHold;
-    private JoystickButton shooterHold;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -41,8 +39,7 @@ public class Robot extends TimedRobot {
         io = new IO();
         startShoot = new JoystickButton(io.getXboxController(), 1);
         stopShoot = new JoystickButton(io.getXboxController(), 2);
-        conveyorHold = new JoystickButton(io.getXboxController(), 5);
-        shooterHold = new JoystickButton(io.getXboxController(), 6);
+
 
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
@@ -50,8 +47,6 @@ public class Robot extends TimedRobot {
 
         startShoot.whenPressed(new StartIntake());
         stopShoot.whenPressed(new StopIntake());
-        conveyorHold.whileHeld(new MoveConveyor());
-        shooterHold.whileHeld(new RunShooter());
     }
 
     @Override
