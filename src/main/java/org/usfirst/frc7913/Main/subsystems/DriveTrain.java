@@ -1,5 +1,8 @@
 package org.usfirst.frc7913.Main.subsystems;
 
+//import java.sql.Time;
+import java.time.Instant;
+
 import org.usfirst.frc7913.Main.Robot;
 import org.usfirst.frc7913.Main.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -61,12 +64,24 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new Drive());
     }
 
+    public void autoMode(int duration) throws InterruptedException {
+        long stopTime = Instant.now().getEpochSecond() + duration;
+
+        while (stopTime > Instant.now().getEpochSecond()) {
+            DriveTrain.arcadeDrive(0.4, 0, false);
+        }
+        DriveTrain.arcadeDrive(0, 0, false);
+        
+    }
+
     @Override
     public void periodic() {
         // Gets X & Y axes from the joystick controller
-        // Arcade Drive combines the two motor controller groups, first arg is forward/reverse, second is rotation.
-        // Unlike tank Drive which has the two motor controller groups separate where the first arg is forward/reverse for the left side and the second is the same for the right
-        //DriveTrain.arcadeDrive(Robot.io.joystickx30.getY(), Robot.io.joystickx30.getX(), true);
-        DriveTrain.tankDrive(Robot.io.xboxController.getLeftY(), Robot.io.xboxController.getRightY());
+        // Arcade Drive combines the two motor controller groups, first arg is
+        // forward/reverse, second is rotation.
+        // Unlike tank Drive which has the two motor controller groups separate where
+        // the first arg is forward/reverse for the left side and the second is the same
+        // for the rightP
+        DriveTrain.arcadeDrive(Robot.io.xboxController.getLeftY(), Robot.io.xboxController.getLeftX()*-1, true);
     }
 }

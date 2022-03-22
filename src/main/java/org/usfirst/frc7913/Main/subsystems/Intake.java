@@ -2,13 +2,13 @@ package org.usfirst.frc7913.Main.subsystems;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 
 public class Intake extends Subsystem {
-    private PWMSparkMax motor;
+    private PWMVictorSPX motor;
 
     public Intake() {
-        motor = new PWMSparkMax(4);
+        motor = new PWMVictorSPX(4);
     }
 
     public void disableMotor() {
@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
     }
 
     public Command start(){
-        setSpeed(0.75);
+        setSpeed(-0.70);
         return null;
     }
 
