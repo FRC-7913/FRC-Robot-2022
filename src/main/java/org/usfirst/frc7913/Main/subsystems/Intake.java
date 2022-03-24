@@ -6,9 +6,11 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 
 public class Intake extends Subsystem {
     private PWMVictorSPX motor;
+    private PWMVictorSPX attachmentMotor;
 
     public Intake() {
         motor = new PWMVictorSPX(4);
+        attachmentMotor = new PWMVictorSPX(8);
     }
 
     public void disableMotor() {
@@ -17,6 +19,7 @@ public class Intake extends Subsystem {
 
     public void setSpeed(double speed) {
         motor.set(speed);
+        attachmentMotor.set(speed);
     }
 
     public Command start(){
