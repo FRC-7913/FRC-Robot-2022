@@ -2,15 +2,15 @@ package org.usfirst.frc7913.Main.subsystems;
 import org.usfirst.frc7913.Main.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 
 public class Shooter extends Subsystem {
-    private PWMSparkMax bottomMotor;
-    private PWMSparkMax topMotor;
+    private PWMVictorSPX bottomMotor;
+    private PWMVictorSPX topMotor;
 
     public Shooter() {
-        bottomMotor = new PWMSparkMax(5);
-        topMotor = new PWMSparkMax(6);
+        bottomMotor = new PWMVictorSPX(5);
+        topMotor = new PWMVictorSPX(6);
     }
 
     public void disableMotor() {
@@ -18,7 +18,8 @@ public class Shooter extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-        topMotor.set(speed * -1);
+        speed = speed * -1;
+        topMotor.set(speed);
         bottomMotor.set(speed);
     }
 
@@ -34,7 +35,7 @@ public class Shooter extends Subsystem {
 
     @Override
     public void periodic() {
-        setSpeed(Robot.io.xboxController.getRightTriggerAxis());
+        setSpeed((Robot.io.xboxController.getRightTriggerAxis() * 0.8) + (Robot.io.xboxController.getLeftTriggerAxis() * 0.5));
     }
 
     @Override

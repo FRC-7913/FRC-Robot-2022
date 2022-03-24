@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc7913.Main.commands.*;
 import org.usfirst.frc7913.Main.subsystems.*;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import edu.wpi.first.cameraserver.CameraServer;
+//import edu.wpi.first.cscore.CameraServerCvJNI;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -35,18 +36,24 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        System.out.println("Robot is initalizing?");
         DriveTrain = new DriveTrain();
         io = new IO();
         startShoot = new JoystickButton(io.getXboxController(), 1);
         stopShoot = new JoystickButton(io.getXboxController(), 2);
 
 
-        chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
+        // chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
         SmartDashboard.putData("Auto mode", chooser);
 
         startShoot.whenPressed(new StartIntake());
         stopShoot.whenPressed(new StopIntake());
+
+        //Starts the camera server based on what was given in these docs
+        //https://docs.wpilib.org/en/stable/docs/software/vision-processing/roborio/using-the-cameraserver-on-the-roborio.html
+        CameraServer.startAutomaticCapture();
+        CameraServer.startAutomaticCapture();
     }
 
     @Override
@@ -70,10 +77,58 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        autonomousCommand = chooser.getSelected();
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null)
-            autonomousCommand.start();
+        // autonomousCommand = chooser.getSelected();
+        // // schedule the autonomous command (example)
+        // if (autonomousCommand != null)
+        //     autonomousCommand.start();
+
+        Shooter.setSpeed(0.8);
+                
+        driveWait(3);
+
+        wait(1500);
+        
+        Conveyor.setSpeed(0.65);
+
+        wait(1500);
+
+        Intake.start();
+        Conveyor.setSpeed(0.5);
+        wait(500);
+
+       driveWait(2);
+        Intake.setSpeed(0);
+
+        Conveyor.setSpeed(-0.5);
+        wait(400);
+        Conveyor.setSpeed(0);
+
+        Shooter.setSpeed(0.95);
+        
+        wait(1500);
+
+        Conveyor.setSpeed(0.5);
+
+        wait(1500);
+
+        Conveyor.setSpeed(0);
+        Shooter.setSpeed(0);
+        
+    }
+
+    static void driveWait(int sec){
+        try {
+            DriveTrain.autoMode(sec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    static void wait(int ms){
+        try{
+            Thread.sleep(ms);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -100,5 +155,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+     //   System.out.println("TEST");
     }
 }
+

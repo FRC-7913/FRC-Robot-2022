@@ -2,13 +2,13 @@ package org.usfirst.frc7913.Main.subsystems;
 import org.usfirst.frc7913.Main.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 
 public class Conveyor extends Subsystem {
-    private PWMSparkMax motor;
+    private PWMVictorSPX motor;
 
     public Conveyor() {
-        motor = new PWMSparkMax(7);
+        motor = new PWMVictorSPX(7);
     }
 
     public void disableMotor() {
@@ -16,6 +16,7 @@ public class Conveyor extends Subsystem {
     }
 
     public void setSpeed(double speed) {
+        speed = speed * -1;
         motor.set(speed);
     }
 
@@ -31,7 +32,8 @@ public class Conveyor extends Subsystem {
 
     @Override
     public void periodic() {
-        setSpeed(Robot.io.xboxController.getLeftTriggerAxis());
+        setSpeed(Robot.io.xboxController.getRightY() * -1);
+       // System.out.println(Robot.io.xboxController.getRightY());;
     }
 
     @Override
